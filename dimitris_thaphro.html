@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dimitris & Aphrodite</title>
+
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* <-- FIX scrollbar */
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+#slideshow-container {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  overflow: hidden;
+}
+
+.slideshow-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: opacity 1.5s ease-in-out;
+  opacity: 0;
+}
+
+.slideshow-image.active {
+  opacity: 1;
+}
+
+/* Gradient overlay */
+#bg-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45));
+  z-index: -1;
+}
+
+/* HEADER AREA */
+header.topbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 70px 80px;
+  width: 100%;
+  position: relative;
+  z-index: 5;
+  pointer-events: auto;
+}
+
+.nav-all {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+.nav-item, .nav-item-hidden {
+  font-size: 13px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: rgba(255,255,255,0.9);
+  text-decoration: none;
+  transition: color 0.18s;
+}
+
+.nav-item:hover { color: #fff; }
+
+.center-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  pointer-events: none;
+}
+
+.names { display: flex; flex-direction: column; align-items: center; }
+
+.name-line {
+  font-family: "Brush Script MT", "Segoe Script", "Pacifico", cursive;
+  font-style: italic;
+  font-weight: 300;
+  color: rgba(255,255,255,0.98);
+  margin: 0;
+  padding: 0;
+  line-height: 0.85;
+  letter-spacing: 0.02em;
+}
+
+.name-line.first, .name-line.second { font-size: 40px; }
+.name-line.middle { font-size: 30px; margin: 2px 0; }
+
+
+.splatter {
+  position: absolute;
+  width: 500px;
+  height: 140px;
+  left: 50%;
+  top: -20px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.dot { position: absolute; background: rgba(255,255,255,0.72); border-radius: 50%; }
+
+.d1 { width:3px; height:3px; top:0%; left:40%; }
+.d2 { width:2px; height:2px; top:5%; left:39%; }
+.d3 { width:2px; height:2px; top:8%; left:36%; }
+.d4 { width:3px; height:3px; top:15%; left:32%; }
+.d5 { width:1.6px; height:1.6px; top:22%; left:37%; }
+.d6 { width:2px; height:2px; top:30%; left:41%; }
+.d7 { width:4px; height:4px; top:8%; left:45%; }
+.d8 { width:3px; height:3px; top:12%; left:35%; }
+.d9 { width:2px; height:2px; top:18%; left:48%; }
+.d10 { width:4px; height:4px; top:10%; left:56%; }
+.d11 { width:3px; height:3px; top:20%; left:47%; }
+.d12 { width:2px; height:2px; top:26%; left:50%; }
+.d13 { width:4px; height:4px; top:5%; left:58%; }
+.d14 { width:3px; height:3px; top:12%; left:40%; }
+.d15 { width:2px; height:2px; top:22%; left:55%; }
+.d16 { width:2.6px; height:2.6px; top:28%; left:48%; }
+.d17 { width:4px; height:4px; top:8%; left:51%; }
+.d18 { width:3px; height:3px; top:15%; left:56%; }
+.d19 { width:2px; height:2px; top:22%; left:44%; }
+.d20 { width:4px; height:4px; top:10%; left:54%; }
+.d21 { width:1.6px; height:1.6px; top:0%; left:48%; }
+.d22 { width:1.6px; height:1.6px; top:5%; left:56%; }
+.d23 { width:1.6px; height:1.6px; top:8%; left:37%; }
+.d24 { width:1.6px; height:1.6px; top:12%; left:46%; }
+.d25 { width:1.6px; height:1.6px; top:22%; left:61%; }
+.d26 { width:1.6px; height:1.6px; top:28%; left:51%; }
+.d27 { width:2.2px; height:2.2px; top:33%; left:56%; }
+.d28 { width:1.6px; height:1.6px; top:38%; left:49%; }
+.d29 { width:1.6px; height:1.6px; top:45%; left:56%; }
+.d30 { width:1.6px; height:1.6px; top:50%; left:50%; }
+.d31 { width:1.6px; height:1.6px; top:55%; left:58%; }
+.d32 { width:1.6px; height:1.6px; top:60%; left:50%; }
+.d33 { width:2.6px; height:2.6px; top:52%; left:56%; }
+.d34 { width:3.6px; height:3.6px; top:45%; left:47%; }
+.d35 { width:2px; height:2px; top:38%; left:51%; }
+.d36 { width:3px; height:3px; top:42%; left:57%; }
+.d37 { width:2.5px; height:2.5px; top:48%; left:58%; }
+.d38 { width:1.8px; height:1.8px; top:50%; left:52%; }
+.d39 { width:2.2px; height:2.2px; top:45%; left:55%; }
+.d40 { width:3px; height:3px; top:38%; left:55%; }
+
+/* MAIN HERO DOES NOT INCREASE PAGE HEIGHT */
+main.hero {
+  height: calc(100vh - 160px);
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-center {
+  position: fixed;       /* FIXED → ignores header height */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+  pointer-events: none;
+}
+
+
+.wedding-date {
+  font-family: "Playfair Display", serif;
+  font-size: 82px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.911);
+  text-transform: uppercase;
+  text-shadow: 0 8px 26px rgba(0,0,0,0.35);
+}
+
+.wedding-location {
+  margin-top: 22px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 26px;
+  font-weight: 300;
+  letter-spacing: 0.28em;
+  color: rgba(255, 255, 255, 0.705);
+  text-shadow: 0 6px 18px rgba(0,0,0,0.3);
+}
+
+
+
+
+/*** RESPONSIVE ***/
+@media (max-width: 900px) {
+  header.topbar { padding: 22px 26px; gap: 30px; }
+  .name-line.first, .name-line.second { font-size: 48px; }
+  .splatter { width: 400px; height: 120px; top: -15px; }
+}
+
+@media (max-width: 480px) {
+  header.topbar { gap: 20px; flex-wrap: wrap; justify-content: center; }
+  .name-line.first, .name-line.second { font-size: 38px; }
+  .splatter { width: 360px; height: 100px; top: -10px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- FULLSCREEN SLIDESHOW -->
+<div id="slideshow-container">
+  <div class="slideshow-image active"></div>
+  <div class="slideshow-image"></div>
+</div>
+
+<div id="bg-overlay"></div>
+
+<header class="topbar" role="banner">
+  <div class="nav-all">
+    <a class="nav-item" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HOME</a>
+    <a class="nav-item" href="#">ABOUT US</a>
+    <a class="nav-item" href="#">EVENTS</a>
+    <a class="nav-item" href="#">GALLERY</a>
+
+    <div class="center-slot">
+      <div class="splatter">
+        <!-- ALL 40 DOTS -->
+        <span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span>
+        <span class="dot d4"></span><span class="dot d5"></span><span class="dot d6"></span>
+        <span class="dot d7"></span><span class="dot d8"></span><span class="dot d9"></span>
+        <span class="dot d10"></span><span class="dot d11"></span><span class="dot d12"></span>
+        <span class="dot d13"></span><span class="dot d14"></span><span class="dot d15"></span>
+        <span class="dot d16"></span><span class="dot d17"></span><span class="dot d18"></span>
+        <span class="dot d19"></span><span class="dot d20"></span><span class="dot d21"></span>
+        <span class="dot d22"></span><span class="dot d23"></span><span class="dot d24"></span>
+        <span class="dot d25"></span><span class="dot d26"></span><span class="dot d27"></span>
+        <span class="dot d28"></span><span class="dot d29"></span><span class="dot d30"></span>
+        <span class="dot d31"></span><span class="dot d32"></span><span class="dot d33"></span>
+        <span class="dot d34"></span><span class="dot d35"></span><span class="dot d36"></span>
+        <span class="dot d37"></span><span class="dot d38"></span><span class="dot d39"></span>
+        <span class="dot d40"></span>
+      </div>
+
+      <div class="names">
+        <p class="name-line first">Dimitris</p>
+        <p class="name-line middle">&</p>
+        <p class="name-line second">Aphrodite</p>
+      </div>
+    </div>
+        <a class="nav-item" href="#">TRAVEL AGENCY</a>
+        <a class="nav-item" href="#">QUESTIONS</a>
+        <a class="nav-item" href="#">RSVP</a>
+        <a class="nav-item" href="#">CONTACT</a>
+    </div>
+</header>
+
+<main class="hero">
+    <div class="hero-center">
+    <div class="wedding-date">12 / 09 / 26</div>
+    <div class="wedding-location">RETHYMNO, CRETE</div>
+  </div>
+</main>
+
+<script>
+const images = [
+  "images/hp1.jpg",
+  "images/hp2.jpg",
+  "images/hp3.jpg"
+];
+
+const slides = document.querySelectorAll(".slideshow-image");
+let current = 0;
+
+slides[0].style.backgroundImage = `url('${images[0]}')`;
+slides[1].style.backgroundImage = `url('${images[1]}')`;
+
+setInterval(() => {
+  const next = (current + 1) % images.length;
+
+  const currentSlide = slides[current % 2];
+  const nextSlide =   slides[(current + 1) % 2];
+
+  nextSlide.style.backgroundImage = `url('${images[next]}')`;
+
+  currentSlide.classList.remove("active");
+  nextSlide.classList.add("active");
+
+  current = next;
+
+}, 5000);
+</script>
+
+</body>
+</html>
