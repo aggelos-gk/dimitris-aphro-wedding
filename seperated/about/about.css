@@ -1,0 +1,311 @@
+/* MAIN CONTENT */
+main.about-content {
+  min-height: calc(100vh - 160px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 20px 80px;
+  position: relative;
+  z-index: 2;
+}
+
+.page-title {
+  font-family: "Playfair Display", serif;
+  font-size: 42px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.95);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.page-subtitle {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  margin-bottom: 50px;
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+/* ABOUT CONTAINER */
+.about-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.about-card {
+  background: rgba(20, 20, 20, 0.75);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 60px 70px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.about-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+}
+
+/* STORY SECTIONS */
+.story-intro {
+  text-align: center;
+  margin-bottom: 50px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.story-intro h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 25px;
+  position: relative;
+  display: inline-block;
+}
+
+.story-intro h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #c49a6c, transparent);
+}
+
+.story-section {
+  margin-bottom: 45px;
+  position: relative;
+}
+
+.story-section:last-child {
+  margin-bottom: 0;
+}
+
+.story-section::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: -30px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #c49a6c;
+  opacity: 0.7;
+}
+
+.story-section p {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 19px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.8;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.story-section p:last-child {
+  margin-bottom: 0;
+}
+
+/* HIGHLIGHT TEXT */
+.highlight {
+  color: #e8c39e;
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* LOVE TIMELINE */
+.love-timeline {
+  display: flex;
+  justify-content: space-between;
+  margin: 50px 0;
+  position: relative;
+}
+
+.timeline-item {
+  flex: 1;
+  text-align: center;
+  padding: 0 15px;
+  position: relative;
+}
+
+.timeline-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 40px;
+  right: -15px;
+  width: 30px;
+  height: 2px;
+  background: rgba(196, 154, 108, 0.4);
+}
+
+.timeline-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(196, 154, 108, 0.15);
+  border: 2px solid rgba(196, 154, 108, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
+  font-size: 32px;
+  color: #e8c39e;
+  transition: all 0.3s ease;
+}
+
+.timeline-year {
+  font-family: "Playfair Display", serif;
+  font-size: 24px;
+  font-weight: 500;
+  color: #e8c39e;
+  margin-bottom: 8px;
+}
+
+.timeline-event {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.4;
+}
+
+/* TRAVEL PASSIONS */
+.passions-section {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  padding: 35px;
+  margin-top: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.passions-title {
+  font-family: "Playfair Display", serif;
+  font-size: 26px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 25px;
+  text-align: center;
+  position: relative;
+}
+
+.passions-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 1px;
+  background: rgba(196, 154, 108, 0.5);
+}
+
+.passions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 25px;
+  margin-top: 25px;
+}
+
+.passion-item {
+  text-align: center;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.passion-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(196, 154, 108, 0.2);
+  transform: translateY(-5px);
+}
+
+.passion-icon {
+  font-size: 28px;
+  color: #e8c39e;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.passion-name {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 8px;
+}
+
+.passion-desc {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.5;
+}
+
+/* CLOSING SECTION */
+.closing-section {
+  text-align: center;
+  margin-top: 50px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.closing-section p {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  font-style: italic;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ABOUT PAGE RESPONSIVE */
+@media (max-width: 900px) {
+  .about-card { padding: 40px 35px; }
+  .story-section::before { left: -20px; }
+  .love-timeline { flex-direction: column; gap: 30px; }
+  .timeline-item:not(:last-child)::after {
+    top: auto;
+    bottom: -25px;
+    right: 50%;
+    transform: translateX(50%);
+    width: 2px;
+    height: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-title { font-size: 36px; }
+  .about-card { padding: 35px 25px; }
+  .story-section p { font-size: 18px; }
+  .passions-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .page-title { font-size: 30px; }
+  .page-subtitle { font-size: 16px; }
+  .story-intro h2 { font-size: 26px; }
+  .timeline-icon { width: 70px; height: 70px; font-size: 28px; }
+  .story-section::before { display: none; }
+}

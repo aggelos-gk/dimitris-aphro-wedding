@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Dimitris & Aphrodite</title>
+<title>Travel Agency | Dimitris & Aphrodite</title>
 
 <style>
 html, body {
@@ -11,7 +11,7 @@ html, body {
   padding: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden; /* <-- FIX scrollbar */
+  overflow-x: hidden;
 }
 
 * { box-sizing: border-box; }
@@ -19,45 +19,35 @@ html, body {
 body {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   color: #fff;
+  background: #0a0a0a;
   overflow-x: hidden;
 }
 
-#slideshow-container {
+/* SINGLE BACKGROUND IMAGE (no slideshow) */
+#bg-image {
   position: fixed;
   inset: 0;
   width: 100vw;
   height: 100vh;
   z-index: -2;
   overflow: hidden;
-}
-
-.slideshow-image {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  background-image: url('images/hp1.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  transition: opacity 1.5s ease-in-out;
-  opacity: 0;
 }
 
-.slideshow-image.active {
-  opacity: 1;
-}
-
-/* Gradient overlay */
+/* Darker overlay for better text readability */
 #bg-overlay {
   position: fixed;
   inset: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45));
+  background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.65));
   z-index: -1;
 }
 
-/* HEADER AREA */
+/* HEADER (EXACTLY THE SAME as original page) */
 header.topbar {
   display: flex;
   justify-content: center;
@@ -83,6 +73,7 @@ header.topbar {
   color: rgba(255,255,255,0.9);
   text-decoration: none;
   transition: color 0.18s;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
 
 .nav-item:hover { color: #fff; }
@@ -111,7 +102,6 @@ header.topbar {
 .name-line.first, .name-line.second { font-size: 40px; }
 .name-line.middle { font-size: 30px; margin: 2px 0; }
 
-
 .splatter {
   position: absolute;
   width: 500px;
@@ -125,6 +115,7 @@ header.topbar {
 
 .dot { position: absolute; background: rgba(255,255,255,0.72); border-radius: 50%; }
 
+/* Dot positions (same as main page) */
 .d1 { width:3px; height:3px; top:0%; left:40%; }
 .d2 { width:2px; height:2px; top:5%; left:39%; }
 .d3 { width:2px; height:2px; top:8%; left:36%; }
@@ -166,79 +157,127 @@ header.topbar {
 .d39 { width:2.2px; height:2.2px; top:45%; left:55%; }
 .d40 { width:3px; height:3px; top:38%; left:55%; }
 
-/* MAIN HERO DOES NOT INCREASE PAGE HEIGHT */
-main.hero {
-  height: calc(100vh - 160px);
-  overflow: hidden;
+/* MAIN CONTENT - Simple styling */
+main.travel-content {
+  min-height: calc(100vh - 160px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 20px 80px;
   position: relative;
   z-index: 2;
 }
 
-.hero-center {
-  position: fixed;       /* FIXED → ignores header height */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  width: 100%;
-  pointer-events: none;
-}
-
-
-.wedding-date {
+.page-title {
   font-family: "Playfair Display", serif;
-  font-size: 82px;
+  font-size: 42px;
   font-weight: 400;
   letter-spacing: 0.06em;
-  color: rgba(255, 255, 255, 0.911);
+  color: rgba(255, 255, 255, 0.95);
   text-transform: uppercase;
-  text-shadow: 0 8px 26px rgba(0,0,0,0.35);
+  margin-bottom: 10px;
+  text-align: center;
 }
 
-.wedding-location {
-  margin-top: 22px;
+.travel-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.travel-card {
+  background: rgba(20, 20, 20, 0.75);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 60px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.travel-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+}
+
+.travel-icon {
+  font-size: 60px;
+  margin-bottom: 30px;
+  color: #e8c39e;
+}
+
+.travel-message {
   font-family: "Cormorant Garamond", serif;
-  font-size: 26px;
-  font-weight: 300;
-  letter-spacing: 0.28em;
-  color: rgba(255, 255, 255, 0.705);
-  text-shadow: 0 6px 18px rgba(0,0,0,0.3);
+  font-size: 24px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  margin-bottom: 20px;
 }
 
+.travel-note {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
 
-
-
-/*** RESPONSIVE ***/
+/* RESPONSIVE */
 @media (max-width: 900px) {
   header.topbar { padding: 22px 26px; gap: 30px; }
   .name-line.first, .name-line.second { font-size: 48px; }
   .splatter { width: 400px; height: 120px; top: -15px; }
+  .travel-card { padding: 40px 30px; }
+}
+
+@media (max-width: 768px) {
+  .nav-all { gap: 20px; flex-wrap: wrap; justify-content: center; }
+  .nav-item { font-size: 11px; }
+  .page-title { font-size: 36px; }
+  .travel-card { padding: 35px 25px; }
+  .travel-message { font-size: 22px; }
 }
 
 @media (max-width: 480px) {
   header.topbar { gap: 20px; flex-wrap: wrap; justify-content: center; }
   .name-line.first, .name-line.second { font-size: 38px; }
   .splatter { width: 360px; height: 100px; top: -10px; }
+  .page-title { font-size: 30px; }
+  .travel-message { font-size: 20px; }
+  .travel-icon { font-size: 50px; }
 }
 </style>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<!-- FULLSCREEN SLIDESHOW -->
-<div id="slideshow-container">
-  <div class="slideshow-image active"></div>
-  <div class="slideshow-image"></div>
-</div>
+<!-- SINGLE BACKGROUND IMAGE -->
+<div id="bg-image"></div>
 
 <div id="bg-overlay"></div>
 
 <header class="topbar" role="banner">
   <div class="nav-all">
-    <a class="nav-item" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HOME</a>
-    <a class="nav-item" href="#">ABOUT US</a>
-    <a class="nav-item" href="#">EVENTS</a>
-    <a class="nav-item" href="#">GALLERY</a>
+    <a class="nav-item" href="index.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HOME</a>
+    <a class="nav-item" href="about.html">ABOUT US</a>
+    <a class="nav-item" href="events.html">EVENTS</a>
+    <a class="nav-item" href="gallery.html">GALLERY</a>
 
     <div class="center-slot">
       <div class="splatter">
@@ -265,47 +304,60 @@ main.hero {
         <p class="name-line second">Aphrodite</p>
       </div>
     </div>
-        <a class="nav-item" href="#">TRAVEL AGENCY</a>
-        <a class="nav-item" href="#">QUESTIONS</a>
-        <a class="nav-item" href="#">RSVP</a>
-        <a class="nav-item" href="#">CONTACT</a>
-    </div>
+    
+    <a class="nav-item" href="travel.html">TRAVEL AGENCY</a>
+    <a class="nav-item" href="questions.html">QUESTIONS</a>
+    <a class="nav-item" href="rsvp.html">RSVP</a>
+    <a class="nav-item" href="contact.html">CONTACT</a>
+  </div>
 </header>
 
-<main class="hero">
-    <div class="hero-center">
-    <div class="wedding-date">12 / 09 / 26</div>
-    <div class="wedding-location">RETHYMNO, CRETE</div>
+<main class="travel-content">
+  <h1 class="page-title">Travel & Transportation</h1>
+  
+  <div class="travel-container">
+    <div class="travel-card">
+      <div class="travel-icon">🚌</div>
+      
+      <div class="travel-message">
+        Transportation to and from the wedding venue in Rethymno will be provided for all our guests. Shuttle service will be available from major hotels in the area.
+      </div>
+      
+      <div class="travel-note">
+        Detailed schedules, pickup locations, and timing information will be shared with all confirmed guests closer to the wedding date. Please indicate your need for transportation when you submit your RSVP.
+      </div>
+    </div>
   </div>
 </main>
 
 <script>
-const images = [
-  "images/hp1.jpg",
-  "images/hp2.jpg",
-  "images/hp3.jpg"
-];
+// Single background image - no slideshow
 
-const slides = document.querySelectorAll(".slideshow-image");
-let current = 0;
+// Fallback background if image doesn't load
+window.addEventListener('load', function() {
+  setTimeout(() => {
+    const bgImage = document.getElementById('bg-image');
+    const hasBackground = getComputedStyle(bgImage).backgroundImage !== 'none';
+    
+    if (!hasBackground || bgImage.style.backgroundImage.includes('undefined')) {
+      // Apply fallback gradient background
+      bgImage.style.background = 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)';
+    }
+  }, 1000);
+});
 
-slides[0].style.backgroundImage = `url('${images[0]}')`;
-slides[1].style.backgroundImage = `url('${images[1]}')`;
-
-setInterval(() => {
-  const next = (current + 1) % images.length;
-
-  const currentSlide = slides[current % 2];
-  const nextSlide =   slides[(current + 1) % 2];
-
-  nextSlide.style.backgroundImage = `url('${images[next]}')`;
-
-  currentSlide.classList.remove("active");
-  nextSlide.classList.add("active");
-
-  current = next;
-
-}, 5000);
+// Highlight current page in navigation
+window.addEventListener('DOMContentLoaded', function() {
+  const currentPage = window.location.pathname.split('/').pop();
+  const navItems = document.querySelectorAll('.nav-item');
+  
+  navItems.forEach(item => {
+    if (item.getAttribute('href') === currentPage) {
+      item.style.color = '#fff';
+      item.style.fontWeight = '500';
+    }
+  });
+});
 </script>
 
 </body>
