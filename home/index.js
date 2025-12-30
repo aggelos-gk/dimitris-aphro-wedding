@@ -1,9 +1,9 @@
 // Slideshow functionality
 document.addEventListener('DOMContentLoaded', function() {
   const images = [
-    "home/images/hp1.jpg",
-    "home/images/hp2.jpg",
-    "home/images/hp3.jpg"
+    "home/images/hp1.webp",
+    "home/images/hp2.webp",
+    "home/images/hp3.webp"
   ];
   
   const slides = document.querySelectorAll(".slideshow-image");
