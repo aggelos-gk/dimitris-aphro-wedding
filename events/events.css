@@ -321,30 +321,6 @@ main.events-content {
   }
 }
 
-/* ADDITIONAL INFO */
-.additional-info {
-  margin-top: 50px;
-  padding-top: 30px;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  text-align: center;
-}
-
-.additional-info h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 22px;
-  color: rgba(255,255,255,0.9);
-  margin-bottom: 15px;
-}
-
-.additional-info p {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 17px;
-  color: rgba(255,255,255,0.7);
-  line-height: 1.6;
-  max-width: 700px;
-  margin: 0 auto;
-}
-
 /* EVENTS PAGE RESPONSIVE */
 @media (max-width: 900px) {
   .events-card { padding: 40px 30px; }

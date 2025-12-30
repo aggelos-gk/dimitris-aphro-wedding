@@ -37,6 +37,7 @@ main.travel-content {
 /* TRAVEL CONTAINER - Smaller container */
 .travel-container {
   width: 100%;
+  padding: 60px 70px;
   max-width: 700px; /* Reduced from 900px */
   margin: 0 auto;
   position: relative;

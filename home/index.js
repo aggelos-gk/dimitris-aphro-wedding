@@ -3,7 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const images = [
     "home/images/hp1.webp",
     "home/images/hp2.webp",
-    "home/images/hp3.webp"
+    "home/images/hp3.webp",
+    "home/images/hp4.webp"
   ];
   
   const slides = document.querySelectorAll(".slideshow-image");
