@@ -1,0 +1,184 @@
+// Gallery page specific functionality
+document.addEventListener('DOMContentLoaded', function() {
+  
+  // Initialize background image from data-image attribute
+  const bgImage = document.getElementById('bg-image');
+  if (bgImage) {
+    const imageUrl = bgImage.getAttribute('data-image');
+    if (imageUrl) {
+      bgImage.style.backgroundImage = `url('${imageUrl}')`;
+      bgImage.style.backgroundSize = 'cover';
+      bgImage.style.backgroundPosition = 'center';
+      bgImage.style.backgroundRepeat = 'no-repeat';
+      
+      // Fallback if image doesn't load
+      setTimeout(() => {
+        const hasBackground = getComputedStyle(bgImage).backgroundImage !== 'none';
+        if (!hasBackground || bgImage.style.backgroundImage.includes('undefined')) {
+          bgImage.style.background = 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)';
+          bgImage.style.backgroundImage = 'none';
+        }
+      }, 1000);
+    }
+  }
+  
+  // Set overlay opacity
+  const bgOverlay = document.getElementById('bg-overlay');
+  if (bgOverlay) {
+    bgOverlay.style.background = 'linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.65))';
+  }
+  
+  // Highlight current page in navigation
+  const currentPage = window.location.pathname.split('/').pop();
+  const navItems = document.querySelectorAll('.nav-item');
+  
+  navItems.forEach(item => {
+    if (item.getAttribute('href') === currentPage) {
+      item.style.color = '#fff';
+      item.style.fontWeight = '500';
+    }
+  });
+  
+  // Gallery data - 24 images from your folder
+  const galleryData = [
+    { id: 1, title: 'First Meeting', filename: 'gallery01.jpeg' },
+    { id: 2, title: 'Coffee Date', filename: 'gallery02.jpeg' },
+    { id: 3, title: 'Beach Sunset', filename: 'gallery03.jpeg' },
+    { id: 4, title: 'Mountain Hike', filename: 'gallery04.jpeg' },
+    { id: 5, title: 'Anniversary Dinner', filename: 'gallery05.jpeg' },
+    { id: 6, title: 'City Exploration', filename: 'gallery06.jpeg' },
+    { id: 7, title: 'Christmas Together', filename: 'gallery07.jpeg' },
+    { id: 8, title: 'Spring Picnic', filename: 'gallery08.jpeg' },
+    { id: 9, title: 'Summer Vacation', filename: 'gallery09.jpeg' },
+    { id: 10, title: 'Autumn Colors', filename: 'gallery10.jpeg' },
+    { id: 11, title: 'Winter Wonderland', filename: 'gallery11.jpeg' },
+    { id: 12, title: 'Romantic Getaway', filename: 'gallery12.jpeg' },
+    { id: 13, title: 'Family Gathering', filename: 'gallery13.jpeg' },
+    { id: 14, title: 'Friends Celebration', filename: 'gallery14.jpeg' },
+    { id: 15, title: 'The Proposal', filename: 'gallery15.jpeg' },
+    { id: 16, title: 'Engagement Party', filename: 'gallery16.jpeg' },
+    { id: 17, title: 'Venue Selection', filename: 'gallery17.jpeg' },
+    { id: 18, title: 'Dress Fitting', filename: 'gallery18.jpeg' },
+    { id: 19, title: 'Suit Selection', filename: 'gallery19.jpeg' },
+    { id: 20, title: 'Cake Tasting', filename: 'gallery20.jpeg' },
+    { id: 21, title: 'Floral Selection', filename: 'gallery21.jpeg' },
+    { id: 22, title: 'Invitation Design', filename: 'gallery22.jpeg' },
+    { id: 23, title: 'Pre-Wedding Shoot', filename: 'gallery23.jpeg' },
+    { id: 24, title: 'Final Preparations', filename: 'gallery24.jpeg' }
+  ];
+
+  // Function to generate image URL
+  function generateImageUrl(filename) {
+    return `images/${filename}`;
+  }
+
+  // Initialize gallery - SIMPLE VERSION
+  function initGallery() {
+    const galleryGrid = document.getElementById('galleryGrid');
+    
+    galleryData.forEach((item) => {
+      const galleryItem = document.createElement('div');
+      galleryItem.className = `gallery-item`;
+      galleryItem.dataset.id = item.id;
+      
+      galleryItem.innerHTML = `
+        <img class="gallery-image" src="${generateImageUrl(item.filename)}" alt="${item.title}" loading="lazy">
+        <div class="image-overlay">
+          <div class="image-title">${item.title}</div>
+          <div class="image-number">Photo ${item.id.toString().padStart(2, '0')}/24</div>
+        </div>
+      `;
+      
+      galleryGrid.appendChild(galleryItem);
+    });
+    
+    // Add click events to gallery items
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const id = parseInt(item.dataset.id) - 1; // Convert to 0-based index
+        openLightbox(id);
+      });
+    });
+  }
+
+  // Lightbox functionality
+  let currentImageIndex = 0;
+
+  function openLightbox(index) {
+    currentImageIndex = index;
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    
+    const item = galleryData[index];
+    
+    // Set image source
+    lightboxImage.src = generateImageUrl(item.filename);
+    lightboxImage.alt = item.title;
+    
+    // Show lightbox
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    lightbox.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
+
+  function showNextImage() {
+    currentImageIndex = (currentImageIndex + 1) % galleryData.length;
+    openLightbox(currentImageIndex);
+  }
+
+  function showPrevImage() {
+    currentImageIndex = (currentImageIndex - 1 + galleryData.length) % galleryData.length;
+    openLightbox(currentImageIndex);
+  }
+
+  // Handle image loading errors
+  function handleImageError(img) {
+    console.error(`Failed to load image: ${img.src}`);
+    img.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400"><rect width="600" height="400" fill="%23222"/><text x="300" y="200" font-family="Arial" font-size="24" fill="white" text-anchor="middle" dy=".3em">Image not found</text><text x="300" y="230" font-family="Arial" font-size="16" fill="%23aaa" text-anchor="middle">' + img.alt + '</text></svg>';
+  }
+
+  // Keyboard navigation for lightbox
+  function handleKeyDown(e) {
+    if (!document.getElementById('lightbox').classList.contains('active')) return;
+    
+    switch(e.key) {
+      case 'Escape':
+        closeLightbox();
+        break;
+      case 'ArrowRight':
+        showNextImage();
+        break;
+      case 'ArrowLeft':
+        showPrevImage();
+        break;
+    }
+  }
+
+  // Initialize everything
+  initGallery();
+  
+  // Lightbox controls
+  document.getElementById('closeBtn').addEventListener('click', closeLightbox);
+  document.getElementById('prevBtn').addEventListener('click', showPrevImage);
+  document.getElementById('nextBtn').addEventListener('click', showNextImage);
+  
+  // Close lightbox when clicking outside the image
+  document.getElementById('lightbox').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closeLightbox();
+    }
+  });
+  
+  // Keyboard navigation
+  document.addEventListener('keydown', handleKeyDown);
+  
+  // Handle image loading errors
+  document.querySelectorAll('.gallery-image').forEach(img => {
+    img.onerror = () => handleImageError(img);
+  });
+});

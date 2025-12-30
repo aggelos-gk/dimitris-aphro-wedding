@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Questions | Dimitris & Aphrodite</title>
+
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: #fff;
+  background: #0a0a0a;
+  overflow-x: hidden;
+}
+
+/* SINGLE BACKGROUND IMAGE (no slideshow) */
+#bg-image {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  overflow: hidden;
+  background-image: url('images/hp1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Darker overlay for better text readability */
+#bg-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.65));
+  z-index: -1;
+}
+
+/* HEADER (EXACTLY THE SAME as original page) */
+header.topbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 70px 80px;
+  width: 100%;
+  position: relative;
+  z-index: 5;
+  pointer-events: auto;
+}
+
+.nav-all {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+.nav-item, .nav-item-hidden {
+  font-size: 13px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: rgba(255,255,255,0.9);
+  text-decoration: none;
+  transition: color 0.18s;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+.nav-item:hover { color: #fff; }
+
+.center-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  pointer-events: none;
+}
+
+.names { display: flex; flex-direction: column; align-items: center; }
+
+.name-line {
+  font-family: "Brush Script MT", "Segoe Script", "Pacifico", cursive;
+  font-style: italic;
+  font-weight: 300;
+  color: rgba(255,255,255,0.98);
+  margin: 0;
+  padding: 0;
+  line-height: 0.85;
+  letter-spacing: 0.02em;
+}
+
+.name-line.first, .name-line.second { font-size: 40px; }
+.name-line.middle { font-size: 30px; margin: 2px 0; }
+
+.splatter {
+  position: absolute;
+  width: 500px;
+  height: 140px;
+  left: 50%;
+  top: -20px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.dot { position: absolute; background: rgba(255,255,255,0.72); border-radius: 50%; }
+
+/* Dot positions (same as main page) */
+.d1 { width:3px; height:3px; top:0%; left:40%; }
+.d2 { width:2px; height:2px; top:5%; left:39%; }
+.d3 { width:2px; height:2px; top:8%; left:36%; }
+.d4 { width:3px; height:3px; top:15%; left:32%; }
+.d5 { width:1.6px; height:1.6px; top:22%; left:37%; }
+.d6 { width:2px; height:2px; top:30%; left:41%; }
+.d7 { width:4px; height:4px; top:8%; left:45%; }
+.d8 { width:3px; height:3px; top:12%; left:35%; }
+.d9 { width:2px; height:2px; top:18%; left:48%; }
+.d10 { width:4px; height:4px; top:10%; left:56%; }
+.d11 { width:3px; height:3px; top:20%; left:47%; }
+.d12 { width:2px; height:2px; top:26%; left:50%; }
+.d13 { width:4px; height:4px; top:5%; left:58%; }
+.d14 { width:3px; height:3px; top:12%; left:40%; }
+.d15 { width:2px; height:2px; top:22%; left:55%; }
+.d16 { width:2.6px; height:2.6px; top:28%; left:48%; }
+.d17 { width:4px; height:4px; top:8%; left:51%; }
+.d18 { width:3px; height:3px; top:15%; left:56%; }
+.d19 { width:2px; height:2px; top:22%; left:44%; }
+.d20 { width:4px; height:4px; top:10%; left:54%; }
+.d21 { width:1.6px; height:1.6px; top:0%; left:48%; }
+.d22 { width:1.6px; height:1.6px; top:5%; left:56%; }
+.d23 { width:1.6px; height:1.6px; top:8%; left:37%; }
+.d24 { width:1.6px; height:1.6px; top:12%; left:46%; }
+.d25 { width:1.6px; height:1.6px; top:22%; left:61%; }
+.d26 { width:1.6px; height:1.6px; top:28%; left:51%; }
+.d27 { width:2.2px; height:2.2px; top:33%; left:56%; }
+.d28 { width:1.6px; height:1.6px; top:38%; left:49%; }
+.d29 { width:1.6px; height:1.6px; top:45%; left:56%; }
+.d30 { width:1.6px; height:1.6px; top:50%; left:50%; }
+.d31 { width:1.6px; height:1.6px; top:55%; left:58%; }
+.d32 { width:1.6px; height:1.6px; top:60%; left:50%; }
+.d33 { width:2.6px; height:2.6px; top:52%; left:56%; }
+.d34 { width:3.6px; height:3.6px; top:45%; left:47%; }
+.d35 { width:2px; height:2px; top:38%; left:51%; }
+.d36 { width:3px; height:3px; top:42%; left:57%; }
+.d37 { width:2.5px; height:2.5px; top:48%; left:58%; }
+.d38 { width:1.8px; height:1.8px; top:50%; left:52%; }
+.d39 { width:2.2px; height:2.2px; top:45%; left:55%; }
+.d40 { width:3px; height:3px; top:38%; left:55%; }
+
+/* MAIN CONTENT */
+main.questions-content {
+  min-height: calc(100vh - 160px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 20px 80px;
+  position: relative;
+  z-index: 2;
+}
+
+.page-title {
+  font-family: "Playfair Display", serif;
+  font-size: 42px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.95);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.page-subtitle {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  margin-bottom: 50px;
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+/* QUESTIONS CONTAINER */
+.questions-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.questions-card {
+  background: rgba(20, 20, 20, 0.75);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 60px 70px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.questions-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+}
+
+/* QUESTIONS LIST */
+.questions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.question-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 25px 0;
+  position: relative;
+}
+
+.question-item:first-child {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* QUESTION HEADER */
+.question-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.question-header:hover {
+  opacity: 0.9;
+}
+
+.question-text {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.95);
+  flex: 1;
+  padding-right: 30px;
+  line-height: 1.4;
+}
+
+.toggle-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(196, 154, 108, 0.15);
+  border: 1px solid rgba(196, 154, 108, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e8c39e;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.toggle-btn:hover {
+  background: rgba(196, 154, 108, 0.25);
+  border-color: rgba(196, 154, 108, 0.5);
+  transform: rotate(90deg);
+}
+
+.toggle-btn.active {
+  background: rgba(196, 154, 108, 0.25);
+  border-color: rgba(196, 154, 108, 0.5);
+  transform: rotate(45deg);
+}
+
+/* ANSWER CONTENT */
+.answer-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.answer-content.active {
+  max-height: 500px;
+  opacity: 1;
+  transform: translateY(0);
+  margin-top: 25px;
+}
+
+.answer-text {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 18px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.7;
+  padding: 0 10px;
+  border-left: 3px solid rgba(196, 154, 108, 0.5);
+  padding-left: 20px;
+}
+
+/* CONTACT NOTE */
+.contact-note {
+  margin-top: 50px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.contact-note p {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 25px;
+  background: rgba(196, 154, 108, 0.15);
+  border: 1px solid rgba(196, 154, 108, 0.3);
+  border-radius: 8px;
+  color: #e8c39e;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 17px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.contact-link:hover {
+  background: rgba(196, 154, 108, 0.25);
+  border-color: rgba(196, 154, 108, 0.5);
+  transform: translateY(-2px);
+}
+
+.contact-icon {
+  font-size: 18px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  header.topbar { padding: 22px 26px; gap: 30px; }
+  .name-line.first, .name-line.second { font-size: 48px; }
+  .splatter { width: 400px; height: 120px; top: -15px; }
+  .questions-card { padding: 40px 35px; }
+  .question-text { font-size: 20px; }
+}
+
+@media (max-width: 768px) {
+  .nav-all { gap: 20px; flex-wrap: wrap; justify-content: center; }
+  .nav-item { font-size: 11px; }
+  .page-title { font-size: 36px; }
+  .questions-card { padding: 35px 25px; }
+  .question-text { font-size: 19px; }
+  .toggle-btn { width: 36px; height: 36px; font-size: 18px; }
+}
+
+@media (max-width: 480px) {
+  header.topbar { gap: 20px; flex-wrap: wrap; justify-content: center; }
+  .name-line.first, .name-line.second { font-size: 38px; }
+  .splatter { width: 360px; height: 100px; top: -10px; }
+  .page-title { font-size: 30px; }
+  .page-subtitle { font-size: 16px; }
+  .question-text { font-size: 18px; }
+  .answer-text { font-size: 16px; }
+  .question-header { flex-direction: column; align-items: flex-start; gap: 15px; }
+  .toggle-btn { align-self: flex-end; }
+}
+</style>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- SINGLE BACKGROUND IMAGE -->
+<div id="bg-image"></div>
+
+<div id="bg-overlay"></div>
+
+<header class="topbar" role="banner">
+  <div class="nav-all">
+    <a class="nav-item" href="index.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HOME</a>
+    <a class="nav-item" href="about.html">ABOUT US</a>
+    <a class="nav-item" href="events.html">EVENTS</a>
+    <a class="nav-item" href="gallery.html">GALLERY</a>
+
+    <div class="center-slot">
+      <div class="splatter">
+        <!-- ALL 40 DOTS -->
+        <span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span>
+        <span class="dot d4"></span><span class="dot d5"></span><span class="dot d6"></span>
+        <span class="dot d7"></span><span class="dot d8"></span><span class="dot d9"></span>
+        <span class="dot d10"></span><span class="dot d11"></span><span class="dot d12"></span>
+        <span class="dot d13"></span><span class="dot d14"></span><span class="dot d15"></span>
+        <span class="dot d16"></span><span class="dot d17"></span><span class="dot d18"></span>
+        <span class="dot d19"></span><span class="dot d20"></span><span class="dot d21"></span>
+        <span class="dot d22"></span><span class="dot d23"></span><span class="dot d24"></span>
+        <span class="dot d25"></span><span class="dot d26"></span><span class="dot d27"></span>
+        <span class="dot d28"></span><span class="dot d29"></span><span class="dot d30"></span>
+        <span class="dot d31"></span><span class="dot d32"></span><span class="dot d33"></span>
+        <span class="dot d34"></span><span class="dot d35"></span><span class="dot d36"></span>
+        <span class="dot d37"></span><span class="dot d38"></span><span class="dot d39"></span>
+        <span class="dot d40"></span>
+      </div>
+
+      <div class="names">
+        <p class="name-line first">Dimitris</p>
+        <p class="name-line middle">&</p>
+        <p class="name-line second">Aphrodite</p>
+      </div>
+    </div>
+    
+    <a class="nav-item" href="#">TRAVEL AGENCY</a>
+    <a class="nav-item" href="questions.html">QUESTIONS</a>
+    <a class="nav-item" href="rsvp.html">RSVP</a>
+    <a class="nav-item" href="contact.html">CONTACT</a>
+  </div>
+</header>
+
+<main class="questions-content">
+  <h1 class="page-title">Frequently Asked Questions</h1>
+  <p class="page-subtitle">Find answers to common questions about our wedding celebrations. If you don't see your question here, please don't hesitate to contact us.</p>
+  
+  <div class="questions-container">
+    <div class="questions-card">
+      <div class="questions-list">
+        <!-- Question 1 -->
+        <div class="question-item">
+          <div class="question-header">
+            <div class="question-text">What is the dress code for the wedding events?</div>
+            <div class="toggle-btn">+</div>
+          </div>
+          <div class="answer-content">
+            <div class="answer-text">
+              <strong>Welcome Party:</strong> Smart casual – dress comfortably but stylishly for an evening gathering.<br><br>
+              <strong>Wedding & Baptism:</strong> Formal attire. For gentlemen, suits or dress shirts with trousers. For ladies, cocktail dresses or formal outfits. The ceremony will take place outdoors, so please consider appropriate footwear.
+            </div>
+          </div>
+        </div>
+        
+        <!-- Question 2 -->
+        <div class="question-item">
+          <div class="question-header">
+            <div class="question-text">Are children welcome at the wedding events?</div>
+            <div class="toggle-btn">+</div>
+          </div>
+          <div class="answer-content">
+            <div class="answer-text">
+              Yes! We welcome children at all our wedding events. Please indicate the number of children attending when you RSVP so we can make appropriate arrangements. There will be a special kids' area during the reception with activities and supervision.
+            </div>
+          </div>
+        </div>
+        
+        <!-- Question 3 -->
+        <div class="question-item">
+          <div class="question-header">
+            <div class="question-text">Will transportation be provided between venues?</div>
+            <div class="toggle-btn">+</div>
+          </div>
+          <div class="answer-content">
+            <div class="answer-text">
+              Yes, shuttle transportation will be provided from major hotels in Heraklion and Rethymno to both event venues. The shuttles will run before and after each event. Detailed schedules and pickup locations will be sent to all guests closer to the wedding date.
+            </div>
+          </div>
+        </div>
+        
+        <!-- Question 4 -->
+        <div class="question-item">
+          <div class="question-header">
+            <div class="question-text">What time should we arrive for the wedding ceremony?</div>
+            <div class="toggle-btn">+</div>
+          </div>
+          <div class="answer-content">
+            <div class="answer-text">
+              Please arrive at Ktima Pavlaki by <strong>5:30 PM</strong> on September 12th. The ceremony will begin promptly at 6:00 PM. We recommend allowing extra time for travel and parking, as the venue is quite popular during wedding season.
+            </div>
+          </div>
+        </div>
+        
+        <!-- Question 5 -->
+        <div class="question-item">
+          <div class="question-header">
+            <div class="question-text">Is there parking available at the wedding venue?</div>
+            <div class="toggle-btn">+</div>
+          </div>
+          <div class="answer-content">
+            <div class="answer-text">
+              Yes, there is ample free parking available at Ktima Pavlaki. We recommend carpooling if possible. Valet service will also be available for those who prefer it. The parking area is a short walk from the ceremony and reception areas.
+            </div>
+          </div>
+        </div>
+        
+        <!-- Question 6 -->
+        <div class="question-item">
+          <div class="question-header">
+            <div class="question-text">I have dietary restrictions. How can I let you know?</div>
+            <div class="toggle-btn">+</div>
+          </div>
+          <div class="answer-content">
+            <div class="answer-text">
+              Please indicate any dietary restrictions or allergies when you submit your RSVP. Our catering team can accommodate most dietary needs including vegetarian, vegan, gluten-free, and common allergies. If you have complex requirements, please contact us directly so we can ensure you're properly accommodated.
+            </div>
+          </div>
+        </div>
+        
+        <!-- Question 7 -->
+        <div class="question-item">
+          <div class="question-header">
+            <div class="question-text">What type of gifts do you prefer?</div>
+            <div class="toggle-btn">+</div>
+          </div>
+          <div class="answer-content">
+            <div class="answer-text">
+              Your presence at our wedding is the greatest gift of all. For those who wish to give a gift, we have a honeymoon fund that will help us create wonderful memories on our post-wedding travels. No physical gifts are expected – your love and support mean everything to us.
+            </div>
+          </div>
+        </div>
+        
+        <!-- Question 8 -->
+        <div class="question-item">
+          <div class="question-header">
+            <div class="question-text">Can I take photos during the ceremony?</div>
+            <div class="toggle-btn">+</div>
+          </div>
+          <div class="answer-content">
+            <div class="answer-text">
+              We're having an "unplugged" ceremony. We kindly request that phones and cameras be put away during the ceremony itself. Our professional photographers will capture every special moment, and we'll happily share the photos with you afterward. Feel free to take photos during the reception and other events!
+            </div>
+          </div>
+        </div>
+        
+        <!-- Question 9 -->
+        <div class="question-item">
+          <div class="question-header">
+            <div class="question-text">What's the weather typically like in Crete in September?</div>
+            <div class="toggle-btn">+</div>
+          </div>
+          <div class="answer-content">
+            <div class="answer-text">
+              September in Crete is beautiful! Average temperatures range from 20°C to 28°C (68°F to 82°F). Evenings can be slightly cooler, especially near the coast, so we recommend bringing a light jacket or wrap. Rainfall is minimal, and we're hoping for clear skies for our outdoor events.
+            </div>
+          </div>
+        </div>
+        
+        <!-- Question 10 -->
+        <div class="question-item">
+          <div class="question-header">
+            <div class="question-text">When is the RSVP deadline?</div>
+            <div class="toggle-btn">+</div>
+          </div>
+          <div class="answer-content">
+            <div class="answer-text">
+              Please RSVP by <strong>August 1, 2026</strong>. This gives us enough time to finalize seating arrangements, catering numbers, and other important details. If your plans change after you've RSVP'd, please let us know as soon as possible.
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Contact Note -->
+      <div class="contact-note">
+        <p>Still have questions? We're happy to help!</p>
+        <a href="contact.html" class="contact-link">
+          <span class="contact-icon">✉️</span>
+          <span>Contact Us Directly</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+// Single background image - no slideshow
+
+// Toggle FAQ answers
+document.addEventListener('DOMContentLoaded', function() {
+  const toggleButtons = document.querySelectorAll('.toggle-btn');
+  const questionHeaders = document.querySelectorAll('.question-header');
+  
+  // Function to close all answers except the clicked one
+  function closeAllAnswers(exceptIndex) {
+    toggleButtons.forEach((btn, index) => {
+      if (index !== exceptIndex) {
+        btn.classList.remove('active');
+        btn.textContent = '+';
+        btn.parentElement.nextElementSibling.classList.remove('active');
+      }
+    });
+  }
+  
+  // Add click event to each toggle button
+  toggleButtons.forEach((btn, index) => {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      
+      const answerContent = this.parentElement.nextElementSibling;
+      
+      // Toggle active state
+      if (this.classList.contains('active')) {
+        this.classList.remove('active');
+        this.textContent = '+';
+        answerContent.classList.remove('active');
+      } else {
+        closeAllAnswers(index);
+        this.classList.add('active');
+        this.textContent = '×';
+        answerContent.classList.add('active');
+      }
+    });
+  });
+  
+  // Add click event to question headers
+  questionHeaders.forEach((header, index) => {
+    header.addEventListener('click', function() {
+      const toggleBtn = this.querySelector('.toggle-btn');
+      const answerContent = this.nextElementSibling;
+      
+      // Toggle active state
+      if (toggleBtn.classList.contains('active')) {
+        toggleBtn.classList.remove('active');
+        toggleBtn.textContent = '+';
+        answerContent.classList.remove('active');
+      } else {
+        closeAllAnswers(index);
+        toggleBtn.classList.add('active');
+        toggleBtn.textContent = '×';
+        answerContent.classList.add('active');
+      }
+    });
+  });
+  
+  // Initially open first question
+  if (toggleButtons.length > 0) {
+    toggleButtons[0].classList.add('active');
+    toggleButtons[0].textContent = '×';
+    toggleButtons[0].parentElement.nextElementSibling.classList.add('active');
+  }
+});
+
+// Fallback background if image doesn't load
+window.addEventListener('load', function() {
+  setTimeout(() => {
+    const bgImage = document.getElementById('bg-image');
+    const hasBackground = getComputedStyle(bgImage).backgroundImage !== 'none';
+    
+    if (!hasBackground || bgImage.style.backgroundImage.includes('undefined')) {
+      // Apply fallback gradient background
+      bgImage.style.background = 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)';
+    }
+  }, 1000);
+});
+
+// Highlight current page in navigation
+window.addEventListener('DOMContentLoaded', function() {
+  const currentPage = window.location.pathname.split('/').pop();
+  const navItems = document.querySelectorAll('.nav-item');
+  
+  navItems.forEach(item => {
+    if (item.getAttribute('href') === currentPage) {
+      item.style.color = '#fff';
+      item.style.fontWeight = '500';
+    }
+  });
+});
+</script>
+
+</body>
+</html>
