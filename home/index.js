@@ -15,7 +15,17 @@ document.addEventListener('DOMContentLoaded', function() {
     slides[0].style.backgroundImage = `url('${images[0]}')`;
     slides[1].style.backgroundImage = `url('${images[1]}')`;
   }
-  
+      // Highlight current page in navigation
+    const currentPage = window.location.pathname.split('/').pop();
+    const navItems = document.querySelectorAll('.nav-item');
+    
+    navItems.forEach(item => {
+        const itemHref = item.getAttribute('href');
+        if (itemHref === currentPage || (currentPage === '' && itemHref === 'index.html')) {
+            item.style.color = '#fff';
+            item.style.fontWeight = '500';
+        }
+    });
   // Start slideshow if we have slides
   if (slides.length > 0) {
     setInterval(() => {
