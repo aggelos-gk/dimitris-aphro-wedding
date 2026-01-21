@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const notAttendingRadio = document.getElementById('notAttending');
     const guestSection = document.getElementById('guestSection');
     const welcomePartySection = document.getElementById('welcomePartySection');
+    const transportationSection = document.getElementById('transportationSection');
     const bringGuestsCheckbox = document.getElementById('bringGuests');
     const bringChildrenCheckbox = document.getElementById('bringChildren');
     const guestDetails = document.getElementById('guestDetails');
@@ -27,6 +28,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const childrenNamesTextarea = document.getElementById('childrenNames');
     const welcomeYesRadio = document.getElementById('welcomeYes');
     const welcomeNoRadio = document.getElementById('welcomeNo');
+    
+    // Transportation elements
+    const transportYesRadio = document.getElementById('transportYes');
+    const transportNoRadio = document.getElementById('transportNo');
+    const transportNotSureRadio = document.getElementById('transportNotSure');
 
     // Both checkboxes unchecked by default
     bringGuestsCheckbox.checked = false;
@@ -37,9 +43,14 @@ document.addEventListener('DOMContentLoaded', function() {
         if (this.checked) {
             guestSection.style.display = 'block';
             welcomePartySection.style.display = 'block';
+            transportationSection.style.display = 'block';
             // Make welcome party required if attending
             welcomeYesRadio.required = true;
             welcomeNoRadio.required = true;
+            // Make transportation required if attending
+            transportYesRadio.required = true;
+            transportNoRadio.required = true;
+            transportNotSureRadio.required = true;
         }
     });
 
@@ -47,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (this.checked) {
             guestSection.style.display = 'none';
             welcomePartySection.style.display = 'none';
+            transportationSection.style.display = 'none';
             // Hide guest/children details
             guestDetails.style.display = 'none';
             childrenDetails.style.display = 'none';
@@ -59,6 +71,10 @@ document.addEventListener('DOMContentLoaded', function() {
             // Remove required from welcome party
             welcomeYesRadio.required = false;
             welcomeNoRadio.required = false;
+            // Remove required from transportation
+            transportYesRadio.required = false;
+            transportNoRadio.required = false;
+            transportNotSureRadio.required = false;
         }
     });
 
@@ -166,6 +182,15 @@ document.addEventListener('DOMContentLoaded', function() {
                         return;
                     }
                     
+                    // Check transportation selection
+                    const transportation = document.querySelector('input[name="transportation"]:checked');
+                    if (!transportation) {
+                        alert('Please let us know about transportation needs.');
+                        submitBtn.textContent = originalBtnText;
+                        submitBtn.disabled = false;
+                        return;
+                    }
+                    
                     // Check if guest names are required but not provided
                     if (bringGuestsCheckbox.checked && !guestNamesTextarea.value.trim()) {
                         alert('Please provide the names of your adult guests.');
@@ -192,6 +217,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 const bringChildren = attendance.value === 'attending' ? bringChildrenCheckbox.checked : false;
                 const numberOfChildren = bringChildren ? document.getElementById('numberOfChildren').value : '0';
                 const childrenNames = bringChildren ? document.getElementById('childrenNames').value : '';
+                
+                // Transportation data
+                const transportation = attendance.value === 'attending' ? 
+                    document.querySelector('input[name="transportation"]:checked') : null;
                 const message = document.getElementById('message').value;
                 
                 // Δημιουργούμε το formatted message
@@ -217,11 +246,23 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (bringChildren && childrenNames.trim()) {
                         formattedMessage += `📝 CHILDREN NAMES & AGES:\n${childrenNames}\n`;
                     }
+                    
+                    formattedMessage += `\n--- TRANSPORTATION ---\n`;
+                    if (transportation) {
+                        let transportStatus = '';
+                        if (transportation.value === 'yes') transportStatus = '✅ NEEDS TRANSPORT';
+                        if (transportation.value === 'no') transportStatus = '🚗 OWN TRANSPORT';
+                        if (transportation.value === 'notSure') transportStatus = '❓ NOT SURE YET';
+                        
+                        formattedMessage += `TRANSPORTATION: ${transportStatus}\n`;
+                    }
                 } else {
                     // Αν είναι DECLINE, βάζουμε defaults
                     formattedMessage += `🎉 WELCOME PARTY: ❌ DECLINE (not attending wedding)\n`;
                     formattedMessage += `👥 ADULT GUESTS: 0\n`;
                     formattedMessage += `👶 CHILDREN: 0\n`;
+                    formattedMessage += `\n--- TRANSPORTATION ---\n`;
+                    formattedMessage += `TRANSPORTATION: ❌ (not attending wedding)\n`;
                 }
                 
                 formattedMessage += `\n--- MESSAGE FOR THE COUPLE ---\n`;
@@ -261,6 +302,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     bringChildrenCheckbox.checked = false;
                     guestSection.style.display = 'none';
                     welcomePartySection.style.display = 'none';
+                    transportationSection.style.display = 'none';
                     guestDetails.style.display = 'none';
                     childrenDetails.style.display = 'none';
                     guestNamesTextarea.required = false;
@@ -269,6 +311,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     childrenNumberInput.value = '1';
                     welcomeYesRadio.required = false;
                     welcomeNoRadio.required = false;
+                    transportYesRadio.required = false;
+                    transportNoRadio.required = false;
+                    transportNotSureRadio.required = false;
                 } else {
                     // Error - debugging
                     try {
