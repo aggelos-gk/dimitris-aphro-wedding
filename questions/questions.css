@@ -158,6 +158,16 @@ main.questions-content {
   padding-left: 20px;
 }
 
+.iban-number {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.9em;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+  color: rgba(255, 255, 255, 0.9);
+  overflow-wrap: anywhere;
+}
+
 /* CONTACT NOTE */
 .contact-note {
   margin-top: 50px;
