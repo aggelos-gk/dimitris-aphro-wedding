@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const welcomePartyIcon = document.getElementById('welcomePartyIcon');
   if (welcomePartyIcon) {
     welcomePartyIcon.addEventListener('click', function() {
-      window.open('https://www.google.com/maps/place/Heraklion,+Greece', '_blank');
+      window.open('https://www.google.com/maps/search/?api=1&query=Ktima+Ippikou+Omilou+Irakleiou', '_blank');
     });
   }
   
