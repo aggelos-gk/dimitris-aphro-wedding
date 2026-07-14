@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Δήλωση Συμμετοχής | Δημήτρης & Αφροδίτη</title>
+<link rel="stylesheet" href="../layout/header.css">
+<link rel="stylesheet" href="../layout/background.css">
+<link rel="stylesheet" href="rsvp.css">
+<link rel="stylesheet" href="../layout/greek.css">
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- Background elements -->
+<div id="bg-image" data-image="../home/images/hp1.webp"></div>
+<div id="bg-overlay" data-opacity="0.7"></div>
+
+<!-- Mobile Menu Elements (from header) -->
+<div class="mobile-menu-btn" id="mobileMenuBtn">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+<div class="mobile-menu-overlay" id="mobileMenuOverlay">
+  <div class="mobile-nav">
+    <a class="mobile-nav-item" href="/gr/">ΑΡΧΙΚΗ</a>
+    <a class="mobile-nav-item" href="/gr/about">Η ΙΣΤΟΡΙΑ ΜΑΣ</a>
+    <a class="mobile-nav-item" href="/gr/gallery">ΦΩΤΟΓΡΑΦΙΕΣ</a>
+    <a class="mobile-nav-item" href="/gr/events">ΕΚΔΗΛΩΣΕΙΣ</a>
+    
+    <div class="mobile-center-slot">
+      <div class="mobile-names">
+        <p class="mobile-name-line first">Δημήτρης</p>
+        <p class="mobile-name-line middle">&</p>
+        <p class="mobile-name-line second">Αφροδίτη</p>
+      </div>
+    </div>
+    
+    <a class="mobile-nav-item" href="/gr/travel">ΔΙΑΜΟΝΗ</a>
+    <a class="mobile-nav-item" href="/gr/questions">ΕΡΩΤΗΣΕΙΣ</a>
+    <a class="mobile-nav-item" href="/gr/rsvp">ΔΗΛΩΣΗ</a>
+    <a class="mobile-nav-item" href="/gr/contact">ΕΠΙΚΟΙΝΩΝΙΑ</a>
+  </div>
+</div>
+
+<header class="topbar" role="banner">
+  <div class="nav-all">
+    <a class="nav-item" href="/gr/">ΑΡΧΙΚΗ</a>
+    <a class="nav-item" href="/gr/about">Η ΙΣΤΟΡΙΑ ΜΑΣ</a>
+    <a class="nav-item" href="/gr/gallery">ΦΩΤΟΓΡΑΦΙΕΣ</a>
+    <a class="nav-item" href="/gr/events">ΕΚΔΗΛΩΣΕΙΣ</a>
+
+    <div class="center-slot">
+      <div class="splatter">
+        <!-- ALL 40 DOTS -->
+        <span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span>
+        <span class="dot d4"></span><span class="dot d5"></span><span class="dot d6"></span>
+        <span class="dot d7"></span><span class="dot d8"></span><span class="dot d9"></span>
+        <span class="dot d10"></span><span class="dot d11"></span><span class="dot d12"></span>
+        <span class="dot d13"></span><span class="dot d14"></span><span class="dot d15"></span>
+        <span class="dot d16"></span><span class="dot d17"></span><span class="dot d18"></span>
+        <span class="dot d19"></span><span class="dot d20"></span><span class="dot d21"></span>
+        <span class="dot d22"></span><span class="dot d23"></span><span class="dot d24"></span>
+        <span class="dot d25"></span><span class="dot d26"></span><span class="dot d27"></span>
+        <span class="dot d28"></span><span class="dot d29"></span><span class="dot d30"></span>
+        <span class="dot d31"></span><span class="dot d32"></span><span class="dot d33"></span>
+        <span class="dot d34"></span><span class="dot d35"></span><span class="dot d36"></span>
+        <span class="dot d37"></span><span class="dot d38"></span><span class="dot d39"></span>
+        <span class="dot d40"></span>
+      </div>
+
+      <div class="names">
+        <p class="name-line first">Δημήτρης</p>
+        <p class="name-line middle">&</p>
+        <p class="name-line second">Αφροδίτη</p>
+      </div>
+    </div>
+    
+    <a class="nav-item" href="/gr/travel">ΔΙΑΜΟΝΗ</a>
+    <a class="nav-item" href="/gr/questions">ΕΡΩΤΗΣΕΙΣ</a>
+    <a class="nav-item" href="/gr/rsvp">ΔΗΛΩΣΗ</a>
+    <a class="nav-item" href="/gr/contact">ΕΠΙΚΟΙΝΩΝΙΑ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+  </div>
+</header>
+
+<main class="rsvp-content">
+  <h1 class="page-title">ΔΗΛΩΣΗ ΣΥΜΜΕΤΟΧΗΣ</h1>
+  <p class="page-subtitle">Παρακαλούμε απαντήστε έως την 1η Αυγούστου 2026. Συμπληρώστε την παρακάτω φόρμα για να μας ενημερώσετε αν θα μπορέσετε να είστε μαζί μας στη μεγάλη μας μέρα στο Ρέθυμνο Κρήτης.</p>
+  
+  <div class="rsvp-form-container">
+    <form id="rsvpForm" action="https://formspree.io/f/mojqovrr" method="POST">      <!-- Basic Information -->
+      <div class="form-group">
+        <label class="form-label" for="fullName">Ονοματεπώνυμο *</label>
+        <input class="form-input" type="text" id="fullName" name="fullName" required placeholder="Το ονοματεπώνυμό σας">
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label" for="email">Ηλεκτρονική διεύθυνση *</label>
+        <input class="form-input" type="email" id="email" name="email" required placeholder="Η ηλεκτρονική σας διεύθυνση">
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label" for="phone">Τηλέφωνο *</label>
+        <input class="form-input" type="tel" id="phone" name="phone" required placeholder="Το τηλέφωνό σας">
+      </div>
+      
+      <!-- Attendance Section -->
+      <div class="attendance-section">
+        <h3>Θα παρευρεθείτε; *</h3>
+        <div class="attendance-options">
+          <div class="attendance-option">
+            <input type="radio" id="attending" name="attendance" value="attending" required>
+            <label class="attendance-label" for="attending">
+              <span class="attendance-icon">💑</span>
+              <span>Με χαρά θα παρευρεθώ</span>
+            </label>
+          </div>
+          
+          <div class="attendance-option">
+            <input type="radio" id="notAttending" name="attendance" value="notAttending" required>
+            <label class="attendance-label" for="notAttending">
+              <span class="attendance-icon">💌</span>
+              <span>Δυστυχώς δεν θα μπορέσω</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Welcome Party Section (Shows only when accepting) -->
+      <div class="welcome-party-section" id="welcomePartySection">
+        <h4>Θα είστε μαζί μας στο Πάρτι Καλωσορίσματος στις 10 Σεπτεμβρίου; *</h4>
+        <div class="welcome-party-options">
+          <div class="welcome-party-option">
+            <input type="radio" id="welcomeYes" name="welcomeParty" value="yes">
+            <label class="welcome-party-label" for="welcomeYes">
+              <span class="welcome-party-icon">🎉</span>
+              <span>Ναι, θα είμαι εκεί!</span>
+            </label>
+          </div>
+          
+          <div class="welcome-party-option">
+            <input type="radio" id="welcomeNo" name="welcomeParty" value="no">
+            <label class="welcome-party-label" for="welcomeNo">
+              <span class="welcome-party-icon">⏰</span>
+              <span>Όχι, μόνο στον γάμο</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Πληροφορίες καλεσμένων Section (Shows only when accepting) -->
+      <div class="guest-section" id="guestSection">
+        <h3>Πληροφορίες καλεσμένων</h3>
+        
+        <!-- Guests First (as requested) -->
+        <div class="checkbox-container">
+          <label class="custom-checkbox">
+            <input type="checkbox" id="bringGuests" name="bringGuests">
+            <span class="checkmark"></span>
+          </label>
+          <span class="checkbox-label">Θα έρθω με ενήλικο συνοδό/συνοδούς</span>
+        </div>
+        
+        <div class="guest-details" id="guestDetails">
+          <div class="number-input-container">
+            <label for="numberOfGuests">Αριθμός ενήλικων συνοδών:</label>
+            <div class="number-input-wrapper">
+              <button type="button" class="number-btn" id="guestsMinusBtn">−</button>
+              <input type="text" class="number-input" id="numberOfGuests" name="numberOfGuests" value="1" readonly>
+              <button type="button" class="number-btn" id="guestsPlusBtn">+</button>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="guestNames">Ονοματεπώνυμα συνοδών *</label>
+            <textarea class="form-textarea" id="guestNames" name="guestNames" placeholder="Παρακαλούμε γράψτε τα ονοματεπώνυμα όλων των ενήλικων συνοδών σας (ένα ανά γραμμή)"></textarea>
+            <small style="color: rgba(255,255,255,0.6); font-size: 14px; display: block; margin-top: 5px;">Παρακαλούμε γράψτε ένα όνομα ανά γραμμή</small>
+          </div>
+        </div>
+        
+        <!-- Children Second -->
+        <div class="checkbox-container">
+          <label class="custom-checkbox">
+            <input type="checkbox" id="bringChildren" name="bringChildren">
+            <span class="checkmark"></span>
+          </label>
+          <span class="checkbox-label">Θα έρθω με παιδί/παιδιά</span>
+        </div>
+        
+        <div class="children-details" id="childrenDetails">
+          <div class="number-input-container">
+            <label for="numberOfChildren">Αριθμός παιδιών:</label>
+            <div class="number-input-wrapper">
+              <button type="button" class="number-btn" id="childrenMinusBtn">−</button>
+              <input type="text" class="number-input" id="numberOfChildren" name="numberOfChildren" value="1" readonly>
+              <button type="button" class="number-btn" id="childrenPlusBtn">+</button>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="childrenNames">Ονόματα & ηλικίες παιδιών *</label>
+            <textarea class="form-textarea" id="childrenNames" name="childrenNames" placeholder="Παρακαλούμε γράψτε ονόματα και ηλικίες παιδιών (π.χ. Μαρία - 5 ετών)"></textarea>
+            <small style="color: rgba(255,255,255,0.6); font-size: 14px; display: block; margin-top: 5px;">Μορφή: Όνομα - Ηλικία (ένα ανά γραμμή)</small>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Transportation Section (Shows only when accepting) -->
+<div class="transportation-section" id="transportationSection">
+  <div class="form-section-separator"></div>
+  
+  <div class="attendance-section">
+    <h3>Θα χρειαστείτε μεταφορά από και προς τον χώρο του γάμου;</h3>
+    <div class="attendance-options">
+      <div class="attendance-option">
+        <input type="radio" id="transportYes" name="transportation" value="yes">
+        <label class="attendance-label" for="transportYes">
+          <span class="attendance-icon">🚌</span>
+          <span>Ναι, παρακαλώ</span>
+        </label>
+      </div>
+      
+      <div class="attendance-option">
+        <input type="radio" id="transportNo" name="transportation" value="no">
+        <label class="attendance-label" for="transportNo">
+          <span class="attendance-icon">🚗</span>
+          <span>Όχι, έχω δικό μου μέσο</span>
+        </label>
+      </div>
+      
+      <div class="attendance-option">
+        <input type="radio" id="transportNotSure" name="transportation" value="notSure">
+        <label class="attendance-label" for="transportNotSure">
+          <span class="attendance-icon">❓</span>
+          <span>Δεν είμαι σίγουρος/η ακόμα</span>
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+
+      <!-- Optional Message Section -->
+      <div class="message-section">
+        <div class="form-group">
+          <label class="form-label" for="message">Μήνυμα προς το ζευγάρι (προαιρετικό)</label>
+          <textarea class="form-textarea" id="message" name="message" placeholder="Οι ευχές ή το μήνυμά σας για τον Δημήτρη & την Αφροδίτη"></textarea>
+        </div>
+      </div>
+      
+      <button type="submit" class="submit-button">Αποστολή δήλωσης</button>
+    </form>
+  </div>
+</main>
+
+<script src="../layout/header.js" defer></script>
+<script src="rsvp.js"></script>
+</body>
+</html>

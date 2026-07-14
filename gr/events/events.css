@@ -1,0 +1,402 @@
+/* MAIN CONTENT */
+main.events-content {
+  min-height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 20px 80px;
+  position: relative;
+  z-index: 2;
+}
+
+.page-title {
+  font-family: "Playfair Display", serif;
+  font-size: 42px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.95);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.page-subtitle {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  margin-bottom: 50px;
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+/* EVENTS CONTAINER */
+.events-container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.events-card {
+  background: rgba(20, 20, 20, 0.75);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 50px 60px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+/* REMOVED: The top line gradient */
+/* .events-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+} */
+
+.events-intro {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.events-intro h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 15px;
+}
+
+.events-intro p {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 18px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* EVENTS GRID */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.event-item {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 35px;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.event-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+/* REMOVED: The top colored line on event boxes */
+/* .event-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #c49a6c, #e8c39e);
+} */
+
+/* EVENT ICON - WITH IMPROVED HOVER EFFECT */
+.event-icon-container {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.event-icon {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  font-size: 45px;
+  color: #e8c39e;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+/* New hover effect for icons */
+.event-icon:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #e8c39e;
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(232, 195, 158, 0.4);
+  color: #fff;
+}
+
+/* Add a subtle glow effect on hover */
+.event-icon::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232, 195, 158, 0.2) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.event-icon:hover::after {
+  opacity: 1;
+}
+
+.event-icon-label {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.05em;
+  transition: color 0.3s ease;
+}
+
+.event-icon:hover + .event-icon-label {
+  color: #e8c39e;
+}
+
+/* EVENT CONTENT */
+.event-title {
+  font-family: "Playfair Display", serif;
+  font-size: 26px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.event-date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  color: #e8c39e;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.calendar-icon {
+  font-size: 20px;
+}
+
+.event-location {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 25px;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 17px;
+}
+
+.location-icon {
+  font-size: 20px;
+  color: #c49a6c;
+}
+
+.event-attire {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 17px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.event-attire + .event-details {
+  margin-top: 25px;
+}
+
+.attire-icon,
+.dress-icon {
+  flex: 0 0 auto;
+  font-size: 20px;
+  color: #c49a6c;
+}
+
+.event-people {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin-top: 20px;
+  border-left: 3px solid #c49a6c;
+}
+
+.event-person {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+  color: rgba(255, 255, 255, 0.75);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.event-person:last-child {
+  margin-bottom: 0;
+}
+
+.event-person strong {
+  color: #e8c39e;
+  font-weight: 500;
+}
+
+.person-icon {
+  flex: 0 0 auto;
+  font-size: 20px;
+  color: #c49a6c;
+  line-height: 1.4;
+}
+
+.event-details {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+  border-left: 3px solid #c49a6c;
+}
+
+.event-details p {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 17px;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* RSVP BUTTON (replaces location button) */
+.rsvp-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  padding: 16px;
+  background: rgba(232, 195, 158, 0.15);
+  border: 1px solid rgba(232, 195, 158, 0.3);
+  border-radius: 10px;
+  color: #e8c39e;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  margin-top: 30px;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.rsvp-btn:hover {
+  background: rgba(232, 195, 158, 0.25);
+  border-color: rgba(232, 195, 158, 0.5);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  color: #fff;
+}
+
+.rsvp-icon {
+  font-size: 22px;
+  transition: transform 0.3s ease;
+}
+
+.rsvp-btn:hover .rsvp-icon {
+  transform: translateX(5px);
+}
+
+/* TIMELINE CONNECTOR - UPDATED COLOR */
+.timeline-connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 50px 0;
+  position: relative;
+}
+
+.timeline-line {
+  height: 2px;
+  flex: 1;
+  background: linear-gradient(90deg, transparent, rgba(196, 154, 108, 0.4), transparent);
+}
+
+.timeline-arrow {
+  margin: 0 25px;
+  font-size: 32px;
+  color: #c49a6c;
+  filter: drop-shadow(0 0 8px rgba(196, 154, 108, 0.5));
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    opacity: 0.8; 
+    transform: scale(1); 
+    filter: drop-shadow(0 0 8px rgba(196, 154, 108, 0.5));
+  }
+  50% { 
+    opacity: 1; 
+    transform: scale(1.1); 
+    filter: drop-shadow(0 0 12px rgba(196, 154, 108, 0.7));
+  }
+}
+
+/* EVENTS PAGE RESPONSIVE */
+@media (max-width: 900px) {
+  .events-card { padding: 40px 30px; }
+  .timeline-arrow { font-size: 28px; margin: 0 15px; }
+}
+
+@media (max-width: 768px) {
+  .page-title { font-size: 36px; }
+  .events-card { padding: 30px 20px; }
+  .event-item { padding: 25px; }
+  .timeline-connector { margin: 40px 0; }
+}
+
+@media (max-width: 480px) {
+  .page-title { font-size: 30px; }
+  .page-subtitle { font-size: 16px; }
+  .event-icon { width: 80px; height: 80px; font-size: 35px; }
+  .event-title { font-size: 22px; }
+  .timeline-arrow { font-size: 24px; margin: 0 10px; }
+}
